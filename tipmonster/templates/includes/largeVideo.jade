@@ -1,0 +1,11 @@
+.large-video
+	-if (show)
+		.controls
+			button.swap-button
+				i.fa.fa-clone
+			button.switch-camera-button
+				i.fa.fa-video-camera
+			-if (user.username === show.primaryStreamer.username)
+				button.remove-button
+					i.fa.fa-times
+	video(data-streamid='')

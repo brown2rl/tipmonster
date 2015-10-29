@@ -1,0 +1,35 @@
+extends layoutThreeColumn
+
+block nav
+	include nav
+	#respondBox(style="display:none")
+		p #{message}
+		button.btn.btn-success
+			span Accept
+		button.btn.btn-danger
+			span Decline
+			
+block leftContent
+	include includes/profile
+
+block centerContent
+	//.alert.alert-warning#newFeedItemAlert(role="alert", style="display: none")
+	//	.pull-right
+	//		a(href="") Reload Feed
+	//	strong There are new shows in your feed 
+		
+	//if feed.length == 0
+	//	.alert.alert-info#noLiveAlert(role="alert") 
+	//		strong No one is live
+	//else
+	//	each show in feed		
+	//		include includes/contactStreamCard
+			
+block rightContent
+	include includes/billboard
+
+block scripts
+	//script(src='/javascripts/VideoContainerUtils.js')
+	//script(type="text/javascript").
+		//var feed = !{JSON.stringify(feed)}; // From Jade
+	//script(src='/javascripts/views/newsfeed.js')

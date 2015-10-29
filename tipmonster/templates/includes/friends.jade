@@ -1,0 +1,22 @@
+.container-fluid
+	.row.murgein-bg-light
+		ul#friends.actions
+			each friend in friends
+				li
+					p=friend.username
+					if friend.status !== "offline"
+						button.btn.btn-success.pull-right.callButton(onclick = 'MurgeinWebSocketUtils.callOut("#{show._id}","#{friend.username}","#{show.primaryStreamer.username}");')
+							i.fa.fa-phone
+					if friend.status == "newsfeed"
+						p.pull-right
+							i.murgein-color-green.fa.fa-spinner
+					else if friend.status == "preshow"
+						p.pull-right
+							i.murgein-color-yellow.fa.fa-spinner
+					else if friend.status == "live"
+						p.pull-right
+							i.murgein-color-red.fa.fa-spinner
+					else if friend.status == "offline"
+						p.pull-right
+							i.murgein-color-grey.fa.fa-circle-o
+

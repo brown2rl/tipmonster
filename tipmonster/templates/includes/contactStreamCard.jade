@@ -1,0 +1,29 @@
+.container.newsfeed-item(data-showid="#{show._id}")
+	.row(style="margin-bottom: 5px;")
+		table
+			tr
+				td
+					a(href='/#{show.primaryStreamer.username}', style="margin-left: 5px;") 
+						img(src='/#{show.primaryStreamer.username}/pic', alt='default').img-responsive.img-profile-small.img-circle
+				td
+					a(href='/#{show.primaryStreamer.username}', style="margin-left: 5px;") 
+						if show.primaryStreamer.name
+							i #{show.primaryStreamer.name}
+						else
+							i #{show.primaryStreamer.username}
+	.row
+		include videoContainer
+	.row
+		p#name #{show.name}
+	.row
+		p 19 Likes | 567 Comments | 10 Viewers
+	.row.newsfeed-item-actions
+		button.btn.btn-primary(onclick="MurgeinWebSocketUtils.callIn('#{show._id}')")
+			i.fa.fa-phone
+		button.btn.btn-primary
+			i.fa.fa-heart-o
+		button.btn.btn-primary
+			i.fa.fa-retweet
+		button.btn.btn-primary
+			i.fa.fa-ellipsis-h
+	hr

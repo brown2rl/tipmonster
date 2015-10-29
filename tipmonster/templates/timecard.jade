@@ -1,0 +1,72 @@
+extends layoutThreeColumn
+
+block nav
+	.container-fluid
+		nav.bg-primary.row
+			include nav
+
+block leftContent
+	include includes/billboard
+
+block centerContent
+	h1 Time Card
+		form#timecardForm(onsubmit='onTimeSubmit()').form-group
+			label(for='timecardForm').sr-only please enter time information
+			.input-group
+			input#name(type='text', placeholder='please enter your name to clock in/out').form-control
+			input#submit(type="submit" value="Submit the form!" style="position: absolute; top: 0; left: 0; z-index: 0; width: 1px; height: 1px; visibility: hidden;")
+	#tabs
+		ul.nav.nav-tabs
+			li
+				a#1(data-toggle="tab", href = '#tabs-1')
+			li
+				a#2(data-toggle="tab", href = '#tabs-2')
+			li
+				a#3(data-toggle="tab", href = '#tabs-3')
+			li.active
+				a#4(data-toggle="tab", href = '#tabs-4')
+			li
+				a#5(data-toggle="tab", href = '#tabs-5')
+			li
+				a#6(data-toggle="tab", href = '#tabs-6')
+			li
+				a#7(data-toggle="tab", href = '#tabs-7')
+		#content.tab-content
+			#tabs-1.tab-pane.fade
+				p no information
+			#tabs-2.tab-pane.fade
+				p no information
+			#tabs-3.tab-pane.fade
+				p no information
+			#tabs-4.tab-pane.fade.in.active
+				p 
+			#tabs-5.tab-pane.fade
+				p no information
+			#tabs-6.tab-pane.fade
+				p no information
+			#tabs-7.tab-pane.fade
+				p no information
+block rightContent
+	include includes/billboard
+
+block scripts
+	script(src='/javascripts/MurgeinWebSocketUtils.js')
+	script(type='text/javascript').
+		$(function() {
+			var d = new Date();
+			var month = d.getMonth()+1;
+			var z = [0,2,0,-2,-4,-6,-8,-10];
+			for (var i = 1; i <= 7; i++) {
+				var count = i+z[i];
+				var day = d.getDate()-count;
+				$("#"+i).text(month+"/"+day);
+			}
+			$("#timecardForm").submit(function(e) {
+				e.preventDefault();
+			});
+		});
+		
+		function onTimeSubmit() {
+			var d = new Date();
+			$("#tabs-4").add("<p id='new'>new</p>");
+		}

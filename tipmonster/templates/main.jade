@@ -1,0 +1,71 @@
+extends layoutThreeColumn
+
+block nav
+	nav#nav.murgein-bg-dark
+		#navLogo.col-xs-12
+			p.text-center Hope Uncensored Network
+
+block leftContent
+	div#about.container
+		p(style="padding: 5%;").lead
+			We co-ordinate with other non-profit organizations to provide resources centralized for whatever the need. 
+			We work with organizations like GLSEN to end bullying, 
+			and bring arts back into the schools, embracing the destiny of each 
+			individual regardless of race, sex, gender, or ethnic background. 
+			We are not religious based, and we do not work with any other organization
+			that tries to push a religious agenda. We exist to provide support on the community level, 
+			and more specifically to bring hope and a purpose back to the lives of individuals.
+
+block centerContent
+	div#login.bg.bg-defualt
+		form#login(action='/login', method='post', autocomplete='true')
+			.form-group
+			include ./includes/error-alert.jade        		
+			.form-group
+			.input-group
+			h3 Log In 
+			.input-group
+			span.input-group-addon @
+			input.form-control(type='text', placeholder='username or email address', name='username')
+			br
+			.input-group
+			span.input-group-addon
+				i.fa.fa-key
+			input.form-control(type='password', placeholder='password', name='password')
+			br
+			.input-group
+			input.btn.btn-default(type='submit', value='login')
+		
+block rightContent
+	div#signup.bg.bg-default
+		form#signup(action='/signup', method='post', autocomplete='true')
+			.form-group
+			include ./includes/error-alert.jade
+			.form-group
+			.input-group
+			h3 Sign-Up
+			.input-group
+			span.input-group-addon
+				i.fa.fa-user
+			input.form-control(type='text', placeholder='Organization Name', name='name')
+			br
+			.input-group
+			span.input-group-addon @
+			input.form-control(type='text', placeholder='Contact Person', name='username')
+			br
+			.input-group
+			span.input-group-addon
+				i.fa.fa-envelope-o
+			input.form-control(type='email', placeholder='Email Address', name='email')
+			br
+			.input-group
+			span.input-group-addon
+				i.fa.fa-phone
+			input.form-control(type='phone', placeholder='Phone #', name='phone')
+			.input-group
+			span.input-group-addon
+				i.fa.fa-key
+			input.form-control(type='password', placeholder='password', name='password')
+			br
+			.input-group
+			input.btn.btn-default(type='submit', value='Sign-Up')

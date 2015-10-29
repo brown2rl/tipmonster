@@ -1,0 +1,22 @@
+div
+	button#editProfile.btn.btn-primary(data-toggle='modal', data-target='#editProfileModal')
+		i.fa.fa-plus
+
+each entry in entries
+
+
+#createBlogEntry(role='dialog', aria-hidden='true').modal.fade
+	div.modal-dialog
+		div.modal-dialog
+			div.modal-content
+				div.modal-header
+					input#blogNameInput(type='text', placeholder='blog name',data-toggle="dropdown", aria-haspopup="true", aria-expanded="true").modal-title
+				div.modal-body
+					form#createBlogEntryForm(method='post', action='/#{profile.username}/blog', role='form').form-horizontal
+						div.form-group
+							label(for='nameInput').sr-only blog Body
+							div.col-sm-10.dropdown
+								textarea#blogBodyInput(type='text', placeholder='Please enter blog body here :)', data-toggle="dropdown", aria-haspopup="true", aria-expanded="true").form-control
+								div#friendsListDiv
+				div.modal-footer
+					button#saveBody(type='button', data-dismiss='modal').btn Create entry.

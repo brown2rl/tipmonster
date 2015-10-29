@@ -1,0 +1,50 @@
+extends layoutThreeColumn
+
+block nav
+	.container-fluid
+		nav.bg-primary.row
+			include nav
+
+block leftContent
+	button.btn#callRequestButton(onclick='onCallRequestButtonClick("#{show.primaryStreamer.username}")') Request to Call Out
+	button.btn#exitShowButton(onclick='onExitShowButtonClick("#{user.username}")') Exit Show
+	include includes/friends
+
+block centerContent
+	.show
+		.show-meta
+			.pull-right
+				.show-status#showStatus
+				button.btn#goLiveButton(data-toggle='modal', data-target='#showModalMeta') Go Live
+				button.btn#endShowButton(onclick='onEndShowButtonClick()') End Show				
+			.show-name#showName
+		include includes/videoContainer
+
+	#showModalMeta(role='dialog', aria-hidden='true', onsubmit='onShowNameSubmit()').modal.fade
+		div.modal-dialog
+			div.modal-dialog
+				div.modal-content
+					div.modal-header
+						h4#showModalLabel.modal-title Show Info
+					div.modal-body
+						form(role='form').form-horizontal
+							div.form-group
+								label(for='nameInput').sr-only Show Name
+								div.col-sm-10.dropdown
+									input#nameInput(type='text', placeholder='show name', data-toggle="dropdown", aria-haspopup="true", aria-expanded="true").form-control
+									div#friendsListDiv
+					div.modal-footer
+						button#startBroadcast(type='button', data-dismiss='modal').btn Start Broadcast
+
+block rightContent
+	include includes/billboard
+
+block scripts
+	script(src='/javascripts/VideoContainerUtils.js')
+	script(type='text/javascript').
+		var show = !{JSON.stringify(show)}; // From Jade
+		var friends = !{JSON.stringify(friends)}; // From Jade
+		var viewOnly = !{viewOnly}; // From Jade
+		var warningMessage = !{JSON.stringify(warningMessage)};
+	script(src='/javascripts/views/show.js')
+		

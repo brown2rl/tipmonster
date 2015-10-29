@@ -1,0 +1,24 @@
+nav#nav.murgein-bg-dark
+	.hidden-sm.hidden-md.hidden-lg
+		#navLogoXs.col-xs-12.text-center
+			//img.logo(src="/images/logo.svg" alt="#{config.siteTitle}")
+	#navIcons.col-sm-3.col-xs-12
+		a.btn(href='/', title='Home', class=(title === 'Home' ? 'active' : ''))
+			i.fa.fa-home
+		a.btn(href='/show', title='Preshow', class=(title === 'Preshow' ? 'active' : ''))
+			i.fa.fa-video-camera
+		button.btn
+			i.fa.fa-globe
+		a.btn(href='/logout')
+			i.fa.fa-sign-out
+	.hidden-xs
+		#navLogo.col-sm-6.text-center
+			//img.logo(src="/images/logo.svg" alt="#{config.siteTitle}")
+	#navSearch.col-sm-3.col-xs-12
+		form#navSearchForm(action='/newsfeed', method='GET', class='form-group')
+			label(class='sr-only', for='navSearchForm') search
+			.input-group
+				input(type='text', class='form-control', placeholder='search')
+				.input-group-addon
+					i.fa.fa-search
+			button(type='submit', style='display:none')

@@ -1,0 +1,13 @@
+.container-fluid
+	.row.murgein-bg
+		img(src='/#{profile.username}/pic', alt='default', style='z-index:1').img-responsive.img-profile.img-thumbnail
+	.row.murgein-bg
+		if profile.name
+			div 
+				a(href='/#{profile.username}') #{profile.name} 
+		else
+			div 
+				a(href='/#{profile.username}') #{profile.username}	
+		div Posts | Followers #{profile.followerDisplayCount} | Following #{profile.followingDisplayCount}
+	.row.murgein-bg
+		include newsfeedDrawer

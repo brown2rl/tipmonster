@@ -1,0 +1,43 @@
+extends layoutThreeColumn
+
+block nav
+	.container-fluid
+		nav.bg-primary.row
+			include nav
+block leftContent
+	include includes/profile
+	//- var page = window.location.pathname
+	if path === '/'+username
+		button#editProfile.btn(data-toggle='modal', data-target='#editProfileModal') Edit Profile	
+	
+block centerContent
+	//TODO: consider moving to includes
+	#editProfileModal(role='dialog', aria-hidden='true').modal.fade
+		div.modal-dialog
+			div.modal-dialog
+				div.modal-content
+					div.modal-header
+						h4#showModalLabel.modal-title Edit Autobiography
+					div.modal-body
+						form#editBioForm(method='post', action='/#{profile.username}', role='form').form-horizontal
+							div.form-group
+								label(for='nameInput').sr-only Show Name
+								div.col-sm-10.dropdown
+									input(name='nameInput', type='text', data-toggle="dropdown", aria-haspopup="true", aria-expanded="true", value='#{profile.name}').form-control
+									input(name='usernameInput', type='text', data-toggle="dropdown", aria-haspopup="true", aria-expanded="true", value='#{profile.username}').form-control
+									h4 current bio pic:
+									div.col-md-5.col-sm-5
+										image#bioPic(src='/#{profile.username}/pic').img-responsive.img-circle
+						form#uploadBioPicForm(name='uploadBioPicForm', enctype="multipart/form-data", method='post', action='/#{profile.username}/pic')
+							input.btn#uploadBioPic(name='uploadBioPic', type='file', multiple='false')
+					div.modal-footer
+						input#editBioSumbit(form='editBioForm', value='Save', data-dismiss='modal').btn
+	//include includes/blog
+block rightContent
+	///include includes/friends
+block scripts
+	script(type='text/javascript').
+		//var warning = !{JSON.stringify(warningMessage)};
+		console.log(!{JSON.stringify(profile)});
+		console.log(!{JSON.stringify(warningMessage)});
+	script(src='/javascripts/views/profile.js')
